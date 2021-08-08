@@ -1,0 +1,199 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="Hydro3.Views.ManualView" 
+             Title="Ręczne sterowanie">
+    <Grid>
+        <ScrollView>
+            <StackLayout Orientation="Vertical">
+          
+    
+                <!--#region  Strefa1-->
+                <Frame Margin="20,20,20,0">
+                    <StackLayout>
+                        <StackLayout Orientation="Vertical">
+                            <StackLayout Orientation="Horizontal">
+                                <Image Source="strefa.png"  Margin="0,0,10,0"/>
+                                <StackLayout Orientation="Horizontal">
+                                    <StackLayout   Orientation="Vertical">
+                                        <Label Text="Strefa 1" TextColor="#757575" FontSize="Large" />
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label Text="Czas nawadniania: " TextColor="#757575" FontSize="Default" />
+                                            <Label Text="{Binding Helper.Strefa1.WateringTime}" TextColor="#757575" FontSize="Default" />
+                                            <Label Text=" min" TextColor="#757575" FontSize="Default" />
+                                        </StackLayout>
+                                        </StackLayout>
+                                    <StackLayout  Margin="10,0,0,0" Orientation="Vertical" VerticalOptions="Center" HorizontalOptions="Center">
+                                        <Label Grid.Column="1" Text="Pozostało" HorizontalOptions="Center" FontSize="Default" FontAttributes="Bold" TextColor="#757575"/>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label Text="{Binding Helper.Strefa1.Remaining}" TextColor="#757575" FontSize="Large" HorizontalOptions="Center" />
+                                            <Label Text=" min" TextColor="#757575" FontSize="Large" HorizontalOptions="Center" />
+                                        </StackLayout>
+                                    </StackLayout>
+                                </StackLayout>
+                            </StackLayout>
+                            <Slider ThumbColor="#48a999" Value="{Binding Helper.Strefa1.WateringTime}" IsEnabled="{Binding Helper.Strefa1.NonChangable}" MaximumTrackColor="#757575" MinimumTrackColor="#004c40" Minimum="0" Maximum="60" HorizontalOptions="FillAndExpand"></Slider>
+                        </StackLayout>
+                        <Grid Margin="0,0,10,10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="3*"/>
+                                <ColumnDefinition Width="2*"/>
+                            </Grid.ColumnDefinitions>
+                            <Button Grid.Column="1"  Margin="10, 0, 10, 0" CornerRadius="10" HeightRequest="50" TextColor="#ffffff" Text="{Binding Helper.Strefa1.Stan}" BackgroundColor="#00796b" Command="{Binding S1Command}"   VerticalOptions="End"/>
+                        </Grid>
+                    </StackLayout>
+                </Frame>
+                <!--#endregion-->
+                <!--#region  Strefa2-->
+                <Frame Margin="20,20,20,0">
+                    <StackLayout>
+                        <StackLayout Orientation="Vertical">
+                            <StackLayout Orientation="Horizontal">
+                                <Image Source="strefa.png"  Margin="0,0,10,0"/>
+                                <StackLayout Orientation="Horizontal">
+                                    <StackLayout   Orientation="Vertical">
+                                        <Label Text="Strefa 2" TextColor="#757575" FontSize="Large" />
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label Text="Czas nawadniania: " TextColor="#757575" FontSize="Default" />
+                                            <Label Text="{Binding Helper.Strefa2.WateringTime}" TextColor="#757575" FontSize="Default" />
+                                            <Label Text=" min" TextColor="#757575" FontSize="Default" />
+                                        </StackLayout>
+                                    </StackLayout>
+                                    <StackLayout  Margin="10,0,0,0" Orientation="Vertical" VerticalOptions="Center" HorizontalOptions="Center">
+                                        <Label Grid.Column="1" Text="Pozostało" HorizontalOptions="Center" FontSize="Default" FontAttributes="Bold" TextColor="#757575"/>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label Text="{Binding Helper.Strefa2.Remaining}" TextColor="#757575" FontSize="Large" HorizontalOptions="Center" />
+                                            <Label Text=" min" TextColor="#757575" FontSize="Large" HorizontalOptions="Center" />
+                                        </StackLayout>
+                                    </StackLayout>
+                                </StackLayout>
+                            </StackLayout>
+                            <Slider ThumbColor="#48a999" Value="{Binding Helper.Strefa2.WateringTime}" IsEnabled="{Binding Helper.Strefa2.NonChangable}" MaximumTrackColor="#757575" MinimumTrackColor="#004c40" Minimum="0" Maximum="60" HorizontalOptions="FillAndExpand"></Slider>
+                        </StackLayout>
+                        <Grid Margin="0,0,10,10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="3*"/>
+                                <ColumnDefinition Width="2*"/>
+                            </Grid.ColumnDefinitions>
+                            <Button Grid.Column="1"  Margin="10, 0, 10, 0" CornerRadius="10" HeightRequest="50" TextColor="#ffffff" Text="{Binding Helper.Strefa2.Stan}" BackgroundColor="#00796b" Command="{Binding S2Command}"   VerticalOptions="End"/>
+                        </Grid>
+                    </StackLayout>
+                </Frame>
+                <!--#endregion-->
+                <!--#region  Strefa3-->
+                <Frame Margin="20,20,20,0">
+                    <StackLayout>
+                        <StackLayout Orientation="Vertical">
+                            <StackLayout Orientation="Horizontal">
+                                <Image Source="strefa.png"  Margin="0,0,10,0"/>
+                                <StackLayout Orientation="Horizontal">
+                                    <StackLayout   Orientation="Vertical">
+                                        <Label Text="Strefa 3" TextColor="#757575" FontSize="Large" />
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label Text="Czas nawadniania: " TextColor="#757575" FontSize="Default" />
+                                            <Label Text="{Binding Helper.Strefa3.WateringTime}" TextColor="#757575" FontSize="Default" />
+                                            <Label Text=" min" TextColor="#757575" FontSize="Default" />
+                                        </StackLayout>
+                                    </StackLayout>
+                                    <StackLayout  Margin="10,0,0,0" Orientation="Vertical" VerticalOptions="Center" HorizontalOptions="Center">
+                                        <Label Grid.Column="1" Text="Pozostało" HorizontalOptions="Center" FontSize="Default" FontAttributes="Bold" TextColor="#757575"/>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label Text="{Binding Helper.Strefa3.Remaining}" TextColor="#757575" FontSize="Large" HorizontalOptions="Center" />
+                                            <Label Text=" min" TextColor="#757575" FontSize="Large" HorizontalOptions="Center" />
+                                        </StackLayout>
+                                    </StackLayout>
+                                </StackLayout>
+                            </StackLayout>
+                            <Slider ThumbColor="#48a999" Value="{Binding Helper.Strefa3.WateringTime}" IsEnabled="{Binding Helper.Strefa3.NonChangable}"  MaximumTrackColor="#757575" MinimumTrackColor="#004c40" Minimum="0" Maximum="60" HorizontalOptions="FillAndExpand"></Slider>
+                        </StackLayout>
+                        <Grid Margin="0,0,10,10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="3*"/>
+                                <ColumnDefinition Width="2*"/>
+                            </Grid.ColumnDefinitions>
+                            <Button Grid.Column="1" Margin="10, 0, 10, 0" CornerRadius="10" HeightRequest="50" TextColor="#ffffff" Text="{Binding Helper.Strefa3.Stan}" BackgroundColor="#00796b" Command="{Binding S3Command}"   VerticalOptions="End"/>
+                        </Grid>
+                    </StackLayout>
+                </Frame>
+                <!--#endregion-->
+                <!--#region  Strefa4-->
+                <Frame Margin="20,20,20,0">
+                    <StackLayout>
+                        <StackLayout Orientation="Vertical">
+                            <StackLayout Orientation="Horizontal">
+                                <Image Source="strefa.png"  Margin="0,0,10,0"/>
+                                <StackLayout Orientation="Horizontal">
+                                    <StackLayout   Orientation="Vertical">
+                                        <Label Text="Strefa 4" TextColor="#757575" FontSize="Large" />
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label Text="Czas nawadniania: " TextColor="#757575" FontSize="Default" />
+                                            <Label Text="{Binding Helper.Strefa4.WateringTime}" TextColor="#757575" FontSize="Default" />
+                                            <Label Text=" min" TextColor="#757575" FontSize="Default" />
+                                        </StackLayout>
+                                    </StackLayout>
+                                    <StackLayout  Margin="10,0,0,0" Orientation="Vertical" VerticalOptions="Center" HorizontalOptions="Center">
+                                        <Label Grid.Column="1" Text="Pozostało" HorizontalOptions="Center" FontSize="Default" FontAttributes="Bold" TextColor="#757575"/>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label Text="{Binding Helper.Strefa4.Remaining}" TextColor="#757575" FontSize="Large" HorizontalOptions="Center" />
+                                            <Label Text=" min" TextColor="#757575" FontSize="Large" HorizontalOptions="Center" />
+                                        </StackLayout>
+                                    </StackLayout>
+                                </StackLayout>
+                            </StackLayout>
+                            <Slider ThumbColor="#48a999" Value="{Binding Helper.Strefa4.WateringTime}" IsEnabled="{Binding Helper.Strefa4.NonChangable}" MaximumTrackColor="#757575" MinimumTrackColor="#004c40" Minimum="0" Maximum="60" HorizontalOptions="FillAndExpand"></Slider>
+                        </StackLayout>
+                        <Grid Margin="0,0,10,10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="3*"/>
+                                <ColumnDefinition Width="2*"/>
+                            </Grid.ColumnDefinitions>
+                            <Button Grid.Column="1" Margin="10, 0, 10, 0" CornerRadius="10" HeightRequest="50" TextColor="#ffffff" Text="{Binding Helper.Strefa4.Stan}" BackgroundColor="#00796b" Command="{Binding S4Command}"   VerticalOptions="End"/>
+                        </Grid>
+                    </StackLayout>
+                </Frame>
+                <!--#endregion-->
+                <!--#region  Strefa5-->
+                <Frame Margin="20,20,20,0">
+                    <StackLayout>
+                        <StackLayout Orientation="Vertical">
+                            <StackLayout Orientation="Horizontal">
+                                <Image Source="strefa.png"  Margin="0,0,10,0"/>
+                                <StackLayout Orientation="Horizontal">
+                                    <StackLayout   Orientation="Vertical">
+                                        <Label Text="Strefa 5" TextColor="#757575" FontSize="Large" />
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label Text="Czas nawadniania: " TextColor="#757575" FontSize="Default" />
+                                            <Label Text="{Binding Helper.Strefa5.WateringTime}" TextColor="#757575" FontSize="Default" />
+                                            <Label Text=" min" TextColor="#757575" FontSize="Default" />
+                                        </StackLayout>
+                                    </StackLayout>
+                                    <StackLayout  Margin="10,0,0,0" Orientation="Vertical" VerticalOptions="Center" HorizontalOptions="Center">
+                                        <Label Grid.Column="1" Text="Pozostało" HorizontalOptions="Center" FontSize="Default" FontAttributes="Bold" TextColor="#757575"/>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label Text="{Binding Helper.Strefa5.Remaining}" TextColor="#757575" FontSize="Large" HorizontalOptions="Center" />
+                                            <Label Text=" min" TextColor="#757575" FontSize="Large" HorizontalOptions="Center" />
+                                        </StackLayout>
+                                    </StackLayout>
+                                </StackLayout>
+                            </StackLayout>
+                            <Slider ThumbColor="#48a999" Value="{Binding Helper.Strefa5.WateringTime}" IsEnabled="{Binding Helper.Strefa5.NonChangable}"  MaximumTrackColor="#757575" MinimumTrackColor="#004c40" Minimum="0" Maximum="60" HorizontalOptions="FillAndExpand"></Slider>
+                        </StackLayout>
+                        <Grid Margin="0,0,10,10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="3*"/>
+                                <ColumnDefinition Width="2*"/>
+                            </Grid.ColumnDefinitions>
+                            <Button Grid.Column="1"  Margin="10, 0, 10, 0" CornerRadius="10" HeightRequest="50" TextColor="#ffffff" Text="{Binding Helper.Strefa5.Stan}" BackgroundColor="#00796b" Command="{Binding S5Command}"   VerticalOptions="End"/>
+                        </Grid>
+                    </StackLayout>
+                </Frame>
+                <!--#endregion-->
+
+
+
+            </StackLayout>
+        </ScrollView>
+    </Grid>
+</ContentPage>

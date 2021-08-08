@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="Hydro3.Views.Connection" Title="Ustawienia połączenia">
+
+    <StackLayout Orientation="Vertical" Margin="10,20,0,0">
+        <Grid Margin="10,10,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Text="Połączenie zdalne"/>
+            <Switch  Grid.Column="1" HorizontalOptions="EndAndExpand"/>
+        </Grid>
+    </StackLayout>
+</ContentPage>

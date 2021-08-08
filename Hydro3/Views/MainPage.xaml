@@ -1,0 +1,276 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Hydro3.Views.MainPage"
+             Title="HydroApp" BackgroundColor="White"
+             xmlns:kon="clr-namespace:Hydro3.Kontrolki">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Połaczenie" Command="{Binding ConnectionViewCommand}" Order="Secondary"/>
+        <ToolbarItem Text="Ustawienie" Order="Secondary"/>
+        <ToolbarItem Text="O programie" Order="Secondary"/>
+    </ContentPage.ToolbarItems>
+    <StackLayout Orientation="Vertical">
+
+
+        <Label  Text="Łączenie..."  HorizontalOptions="Center" HeightRequest="30">
+            <Label.Triggers>
+                <DataTrigger TargetType="Label" Binding="{Binding Helper.Polaczony}" Value="True">
+                    <Setter Property="IsVisible" Value="False" />
+                </DataTrigger>
+            </Label.Triggers>
+        </Label>
+        <ScrollView >
+            <StackLayout  >
+                <Grid >
+       
+                    <Frame  BackgroundColor="White" VerticalOptions="CenterAndExpand" HasShadow="False">
+                        
+
+                            <StackLayout  VerticalOptions="Start" >
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1*"/>
+                                        <ColumnDefinition Width="1*"/>
+                                    </Grid.ColumnDefinitions>
+                                 <Label Grid.Column="0" HorizontalTextAlignment="Start" Text="{Binding Helper.SygnalWifi}" Style="{StaticResource LabelStyle}" TextColor="#757575" />
+                                    <Label Grid.Column="1" HorizontalTextAlignment="End" Text="{Binding Helper.Czas}" Style="{StaticResource LabelStyle}" TextColor="#757575" />
+
+                                </Grid>
+                            </StackLayout>
+                      
+                       
+
+                    </Frame>
+
+
+
+                </Grid>
+
+
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Frame  Grid.Column="0" BackgroundColor="White" HasShadow="True" BorderColor="#f5f5f5" Margin="20,10,5,5">
+                    
+                            <Grid >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="3*"/>
+                                <ColumnDefinition Width="2*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" HorizontalTextAlignment="End"  Text="{Binding Helper.Temperatura}" TextColor="#757575" Style="{StaticResource LabelStyleL}"  />
+                           
+                            <Image Grid.Column="1" HorizontalOptions="Start" Source="temp.png" Style="{StaticResource IconStyle}"  />
+                            </Grid>
+                       
+                    </Frame>
+
+                    <Frame  Grid.Column="1" BackgroundColor="White" HasShadow="True" BorderColor="#f5f5f5" Margin="5,10,20,5">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="3*"/>
+                                <ColumnDefinition Width="2*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" Text="{Binding Helper.Wilgotnosc}" TextColor="#757575" Style="{StaticResource LabelStyleL}" HorizontalTextAlignment="End" />
+                            <Image  Grid.Column="1" Source="wilgotnosc.png" Style="{StaticResource IconStyle }" HorizontalOptions="Start"  />
+
+                        </Grid>
+   
+                       
+                    </Frame>
+
+                </Grid>
+                <Frame BackgroundColor="White" HasShadow="True" BorderColor="#f5f5f5" Margin="20,5,20,10">
+                    <!--#region Wilgotnosc gleby -->
+                    <StackLayout Orientation="Vertical" >
+                        <StackLayout Orientation="Horizontal">
+                            <StackLayout   Orientation="Vertical">
+                                <Label Text="Wilgotność gleby" Style="{StaticResource LabelStyle}" FontAttributes="Bold" TextColor="Black"  />
+                                <StackLayout>
+                                    <Label Text="{Binding Helper.WilgGleby}"  Style="{StaticResource LabelStyleL}"  TextColor="#757575"  />
+                                </StackLayout>
+                                </StackLayout>
+                            <StackLayout  Margin="5,0,0,0" Orientation="Horizontal"  HorizontalOptions="EndAndExpand">
+
+                                <Button Text="{Binding Helper.NiePodlewaj}"  Command="{Binding NiePodlewajCommand}"  Margin="0,0,5,20" CornerRadius="10"  BackgroundColor="White" BorderColor="#005b4f" BorderWidth="2"  />
+                            </StackLayout>
+                        </StackLayout>
+                        <ProgressBar ProgressColor="#005b4f" Progress="{Binding Helper.WodaProgress}" HeightRequest="5">
+                         
+                        </ProgressBar>
+                    </StackLayout>
+                    <!--#endregion-->
+                </Frame>
+                <!-- Aktywne zadania-->
+                <Frame  BackgroundColor="White" HasShadow="True" BorderColor="#f5f5f5" Margin="20,5,20,10">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer />
+                    </Frame.GestureRecognizers>
+                    <StackLayout Orientation="Vertical">
+          
+                        <StackLayout  HorizontalOptions="StartAndExpand"  Orientation="Horizontal">
+                        <Image Grid.Column="0" Source="aktywne.png" WidthRequest="40" HeightRequest="40" Margin="0,0,20,0" />
+                            <StackLayout Orientation="Vertical">
+                                <Label Text="Aktywne zadania" FontSize="Default" FontAttributes="Bold" TextColor="Black" HorizontalOptions="Start"/>
+                                
+                                <Label  Text="Brak Zadań" TextColor="#757575" FontSize="Large" HorizontalTextAlignment="Center" IsVisible="{Binding Helper.BrakZadan}"/>
+                                <!--#region Strefa1 -->
+                                <StackLayout Orientation="Vertical" IsVisible="{Binding Helper.AktywneZadanie1.IsActive}">
+                            <StackLayout Orientation="Horizontal">
+                                        <StackLayout   Orientation="Vertical">
+                                            <Label Text="Strefa 1" TextColor="#757575" Style="{StaticResource LabelStyleL}" />
+                                            <StackLayout Orientation="Horizontal">
+                                                <Label Text="Czas nawadniania: " TextColor="#757575" Style="{StaticResource LabelStyle}" />
+                                            <Label Text="{Binding Helper.AktywneZadanie1.WateringTime}" TextColor="#757575" FontSize="Default" />
+                                                <Label Text=" min" TextColor="#757575" Style="{StaticResource LabelStyle}" />
+                                            </StackLayout>
+                                        </StackLayout>
+                                        <StackLayout  Margin="5,0,0,0" Orientation="Vertical" VerticalOptions="Center" HorizontalOptions="Center">
+                                            <Label Grid.Column="1" Text="Pozostało" HorizontalOptions="Center" Style="{StaticResource LabelStyle}" FontAttributes="Bold" TextColor="#757575"/>
+                                            <StackLayout Orientation="Horizontal">
+                                            <Label Text="{Binding Helper.AktywneZadanie1.Remaining}" TextColor="#757575" FontSize="Large" HorizontalOptions="Center" />
+                                                <Label Text="min" TextColor="#757575" Style="{StaticResource LabelStyleL}" HorizontalOptions="Center" />
+                                            </StackLayout>
+                                        </StackLayout>
+                            </StackLayout>
+                                    <ProgressBar ProgressColor="#005b4f" Progress="{Binding Helper.AktywneZadanie1.Progress}" HeightRequest="5"></ProgressBar>
+                        </StackLayout>
+                                <!--#endregion-->
+                                <!--#region Strefa2 -->
+                                <StackLayout Orientation="Vertical" IsVisible="{Binding Helper.AktywneZadanie2.IsActive}">
+                                    <StackLayout Orientation="Horizontal">
+                                        <StackLayout   Orientation="Vertical">
+                                            <Label Text="Strefa 2" TextColor="#757575" Style="{StaticResource LabelStyleL}"/>
+                                            <StackLayout Orientation="Horizontal">
+                                                <Label Text="Czas nawadniania: " TextColor="#757575" Style="{StaticResource LabelStyle}"/>
+                                                <Label Text="{Binding Helper.AktywneZadanie2.WateringTime}" TextColor="#757575" Style="{StaticResource LabelStyle}" />
+                                                <Label Text=" min" TextColor="#757575" Style="{StaticResource LabelStyle}"/>
+                                            </StackLayout>
+                                        </StackLayout>
+                                        <StackLayout  Margin="10,0,0,0" Orientation="Vertical" VerticalOptions="Center" HorizontalOptions="Center">
+                                            <Label Grid.Column="1" Text="Pozostało" HorizontalOptions="Center" Style="{StaticResource LabelStyle}" FontAttributes="Bold" TextColor="#757575"/>
+                                            <StackLayout Orientation="Horizontal">
+                                                <Label Text="{Binding Helper.AktywneZadanie2.Remaining}" TextColor="#757575" Style="{StaticResource LabelStyleL}" HorizontalOptions="Center" />
+                                                <Label Text="min" TextColor="#757575" Style="{StaticResource LabelStyleL}" HorizontalOptions="Center" />
+                                            </StackLayout>
+                                        </StackLayout>
+                                    </StackLayout>
+                                    <ProgressBar ProgressColor="#005b4f" Progress="{Binding Helper.AktywneZadanie2.Progress}" HeightRequest="5"></ProgressBar>
+                                </StackLayout>
+                                <!--#endregion-->
+                                <!--#region Strefa3 -->
+                                <StackLayout Orientation="Vertical" IsVisible="{Binding Helper.AktywneZadanie3.IsActive}">
+                                    <StackLayout Orientation="Horizontal">
+                                        <StackLayout   Orientation="Vertical">
+                                            <Label Text="Strefa 3" TextColor="#757575" Style="{StaticResource LabelStyleL}" />
+                                            <StackLayout Orientation="Horizontal">
+                                                <Label Text="Czas nawadniania: " TextColor="#757575" Style="{StaticResource LabelStyle}" />
+                                                <Label Text="{Binding Helper.AktywneZadanie3.WateringTime}" TextColor="#757575" Style="{StaticResource LabelStyle}" />
+                                                <Label Text=" min" TextColor="#757575" Style="{StaticResource LabelStyle}" />
+                                            </StackLayout>
+                                        </StackLayout>
+                                        <StackLayout  Margin="10,0,0,0" Orientation="Vertical" VerticalOptions="Center" HorizontalOptions="Center">
+                                            <Label Grid.Column="1" Text="Pozostało" HorizontalOptions="Center" Style="{StaticResource LabelStyle}" FontAttributes="Bold" TextColor="#757575"/>
+                                            <StackLayout Orientation="Horizontal">
+                                                <Label Text="{Binding Helper.AktywneZadanie3.Remaining}" TextColor="#757575" Style="{StaticResource LabelStyleL}" HorizontalOptions="Center" />
+                                                <Label Text="min" TextColor="#757575" Style="{StaticResource LabelStyleL}" HorizontalOptions="Center" />
+                                            </StackLayout>
+                                        </StackLayout>
+                                    </StackLayout>
+                                    <ProgressBar ProgressColor="#005b4f" Progress="{Binding Helper.AktywneZadanie3.Progress}" HeightRequest="5"></ProgressBar>
+                                </StackLayout>
+                                <!--#endregion-->
+                                <!--#region Strefa4 -->
+                                <StackLayout Orientation="Vertical" IsVisible="{Binding Helper.AktywneZadanie4.IsActive}">
+                                    <StackLayout Orientation="Horizontal">
+                                        <StackLayout   Orientation="Vertical">
+                                            <Label Text="Strefa 4" TextColor="#757575" Style="{StaticResource LabelStyleL}" />
+                                            <StackLayout Orientation="Horizontal">
+                                                <Label Text="Czas nawadniania: " TextColor="#757575" Style="{StaticResource LabelStyle}" />
+                                                <Label Text="{Binding Helper.AktywneZadanie4.WateringTime}" TextColor="#757575" Style="{StaticResource LabelStyle}" />
+                                                <Label Text=" min" TextColor="#757575" Style="{StaticResource LabelStyle}" />
+                                            </StackLayout>
+                                        </StackLayout>
+                                        <StackLayout  Margin="10,0,0,0" Orientation="Vertical" VerticalOptions="Center" HorizontalOptions="Center">
+                                            <Label Grid.Column="1" Text="Pozostało" HorizontalOptions="Center" Style="{StaticResource LabelStyle}" FontAttributes="Bold" TextColor="#757575"/>
+                                            <StackLayout Orientation="Horizontal">
+                                                <Label Text="{Binding Helper.AktywneZadanie4.Remaining}" TextColor="#757575" Style="{StaticResource LabelStyleL}" HorizontalOptions="Center" />
+                                                <Label Text="min" TextColor="#757575" Style="{StaticResource LabelStyleL}" HorizontalOptions="Center" />
+                                            </StackLayout>
+                                        </StackLayout>
+                                    </StackLayout>
+                                    <ProgressBar ProgressColor="#005b4f" Progress="{Binding Helper.AktywneZadanie4.Progress}" HeightRequest="5"></ProgressBar>
+                                </StackLayout>
+                                <!--#endregion-->
+                                <!--#region Strefa5 -->
+                                <StackLayout Orientation="Vertical" IsVisible="{Binding Helper.AktywneZadanie5.IsActive}">
+                                    <StackLayout Orientation="Horizontal">
+                                        <StackLayout   Orientation="Vertical">
+                                            <Label Text="Strefa 5" TextColor="#757575" Style="{StaticResource LabelStyleL}" />
+                                            <StackLayout Orientation="Horizontal">
+                                                <Label Text="Czas nawadniania: " TextColor="#757575" Style="{StaticResource LabelStyle}" />
+                                                <Label Text="{Binding Helper.AktywneZadanie5.WateringTime}" TextColor="#757575" Style="{StaticResource LabelStyle}" />
+                                                <Label Text=" min" TextColor="#757575" Style="{StaticResource LabelStyle}" />
+                                            </StackLayout>
+                                        </StackLayout>
+                                        <StackLayout  Margin="10,0,0,0" Orientation="Vertical" VerticalOptions="Center" HorizontalOptions="Center">
+                                            <Label Grid.Column="1" Text="Pozostało" HorizontalOptions="Center" Style="{StaticResource LabelStyle}" FontAttributes="Bold" TextColor="#757575"/>
+                                            <StackLayout Orientation="Horizontal">
+                                                <Label Text="{Binding Helper.AktywneZadanie5.Remaining}" TextColor="#757575" Style="{StaticResource LabelStyleL}" HorizontalOptions="Center" />
+                                                <Label Text="min" TextColor="#757575" Style="{StaticResource LabelStyleL}" HorizontalOptions="Center" />
+                                            </StackLayout>
+                                        </StackLayout>
+                                    </StackLayout>
+                                    <ProgressBar ProgressColor="#005b4f" Progress="{Binding Helper.AktywneZadanie5.Progress}" HeightRequest="5"></ProgressBar>
+                                </StackLayout>
+                                <!--#endregion-->
+
+                            </StackLayout>
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+                <Frame  BackgroundColor="White" HasShadow="True" BorderColor="#f5f5f5" Margin="20,5,20,10" >
+                    <StackLayout  HorizontalOptions="StartAndExpand"  Orientation="Horizontal">
+                        <Image Source="task2.png" WidthRequest="40" HeightRequest="40" Margin="0,0,20,0" />
+                        <StackLayout Orientation="Horizontal">
+                            <StackLayout Orientation="Vertical">
+                                <Label  Text="Następne zadanie" Style="{StaticResource LabelStyle}" FontAttributes="Bold" TextColor="Black" HorizontalOptions="Start"/>
+                             <!--#region  Nastepne zadanie-->
+                                <StackLayout Orientation="Horizontal" IsVisible="{Binding Helper.NastepneZadanie.Aktywne}">
+                                    <StackLayout   Orientation="Vertical">
+                                        <Label Text="{Binding Helper.NastepneZadanie.NazwaStrefy}" TextColor="#757575" Style="{StaticResource LabelStyleL}" />
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label Text="Rozpoczęcie: " TextColor="#757575" Style="{StaticResource LabelStyle}" />
+                                            <Label Text="{Binding Helper.NastepneZadanie.GodzinaNawadniania}" TextColor="#757575" Style="{StaticResource LabelStyle}"/>
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label Text="Czas nawadniania: " TextColor="#757575" Style="{StaticResource LabelStyle}" />
+                                            <Label Text="{Binding Helper.NastepneZadanie.CzasTrwania}" TextColor="#757575" Style="{StaticResource LabelStyle}" />
+                                            <Label Text=" min" TextColor="#757575" Style="{StaticResource LabelStyle}"/>
+                                        </StackLayout>
+                                    </StackLayout>
+                                </StackLayout>
+                                <!--#endregion-->
+
+                            </StackLayout>
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+     
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <ImageButton Grid.Column="0" Command="{Binding DalejCommand}"  Margin="20,0,5,0" CornerRadius="10"  Padding="20" Source="calendar.png" HeightRequest="80" BackgroundColor="White" BorderColor="#005b4f" BorderWidth="2"  />
+
+                    <ImageButton Grid.Column="1"   Command="{Binding ManualCommand}"  Margin="5,0,20,0" CornerRadius="10"   Padding="20" Source="reczny.png" HeightRequest="80" BackgroundColor="White" BorderColor="#005b4f" BorderWidth="2"  />
+
+                </Grid>
+            </StackLayout>
+        </ScrollView>
+    </StackLayout>
+</ContentPage>

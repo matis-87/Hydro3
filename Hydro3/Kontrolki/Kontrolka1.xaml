@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Frame
+             xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+
+     x:Name="This"
+             x:Class="Hydro3.Kontrolki.Kontrolka1" 
+         xmlns:kon="clr-namespace:Hydro3.Kontrolki" 
+    Margin="0,5,0,5" 
+    CornerRadius="10" 
+    WidthRequest="10" 
+    HeightRequest="10">
+    <Frame.Style>
+        <Style TargetType="kon:Kontrolka1" >
+            <Style.Triggers>
+                <MultiTrigger TargetType="kon:Kontrolka1">
+                    <MultiTrigger.Conditions>
+                        <PropertyCondition Property="Kolor" Value="czerwony"/>
+                        <PropertyCondition Property="Stan" Value="True"/>
+                    </MultiTrigger.Conditions>
+                    <Setter Property="BackgroundColor" Value="#ff5722"/>
+                </MultiTrigger>
+
+                <MultiTrigger TargetType="kon:Kontrolka1" >
+                    <MultiTrigger.Conditions>
+                        <PropertyCondition Property="Kolor" Value="czerwony"/>
+                        <PropertyCondition Property="Stan" Value="False"/>
+                    </MultiTrigger.Conditions>
+                    <Setter Property="BackgroundColor" Value="#380000"/>
+                </MultiTrigger>
+
+                <MultiTrigger TargetType="kon:Kontrolka1">
+                    <MultiTrigger.Conditions>
+                        <PropertyCondition Property="Kolor" Value="zielony"/>
+                        <PropertyCondition Property="Stan" Value="True"/>
+                    </MultiTrigger.Conditions>
+                    <Setter Property="BackgroundColor" Value="#64a96a"/>
+                </MultiTrigger>
+
+                <MultiTrigger TargetType="kon:Kontrolka1">
+                    <MultiTrigger.Conditions>
+                        <PropertyCondition Property="Kolor" Value="zielony"/>
+                        <PropertyCondition Property="Stan" Value="False"/>
+                    </MultiTrigger.Conditions>
+                    <Setter Property="BackgroundColor" Value="#001800" />
+                </MultiTrigger>
+
+            </Style.Triggers>
+        </Style>
+    </Frame.Style>
+  
+
+</Frame>

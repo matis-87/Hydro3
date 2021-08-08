@@ -1,0 +1,565 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             xmlns:kontrolki="clr-namespace:Hydro3.Kontrolki"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="Hydro3.Views.Harmonogram"
+             Title="Harmonogram" 
+             BackgroundColor="White" BarTextColor="White"  Style="{StaticResource Taby}"
+            
+              >
+    
+    <ContentPage   Title="Strefa1"  IsEnabled="True">
+        
+            <StackLayout Orientation="Vertical"  >
+            <Label  Text="Łączenie..."  HorizontalOptions="Center" HeightRequest="30">
+                <Label.Triggers>
+                    <DataTrigger TargetType="Label" Binding="{Binding Helper.Polaczony}" Value="True">
+                        <Setter Property="IsVisible" Value="False" />
+                    </DataTrigger>
+                </Label.Triggers>
+            </Label>
+            <Grid IsVisible="{Binding Ladowanie}">
+                <StackLayout Orientation="Vertical">
+                    <StackLayout Orientation="Horizontal">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="4*"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label  Grid.Column="0" Margin="5,5,0,10" HeightRequest="50" Text="{Binding Helper.Strefa1.Nazwa}" FontSize="Large" TextColor="Black"/>
+                            <Button Grid.Column="1"  Margin="10, 5, 10, 0" CornerRadius="10" HeightRequest="50" TextColor="#ffffff" Text="..." BackgroundColor="#00796b" Command="{Binding WybierzZdjCommand }"  CommandParameter="1"   VerticalOptions="End"/>
+                        </Grid>
+
+                    </StackLayout>
+                    <ScrollView Orientation="Vertical">
+                        <StackLayout Orientation="Vertical">
+                        <Image Source="{Binding ZdjS1}" Aspect="AspectFill" HeightRequest="150"/>
+                    <Frame Margin="20,5,20,10">
+                
+                        <StackLayout>
+
+
+                            <StackLayout Orientation="Vertical">
+
+                                <StackLayout Orientation="Horizontal">
+
+                                    <Grid HorizontalOptions="FillAndExpand" Margin="0,10,0,0">
+
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="1*"  />
+                                            <ColumnDefinition Width="1*"/>
+                                            <ColumnDefinition Width="1*"/>
+                                            <ColumnDefinition Width="1*"/>
+                                            <ColumnDefinition Width="1*"/>
+                                            <ColumnDefinition Width="1*"/>
+                                            <ColumnDefinition Width="1*"/>
+                                        </Grid.ColumnDefinitions>
+
+
+                                        <kontrolki:ButtonEx Grid.Column="0" Command="{Binding DniS1Command}"  Param="0" HorizontalOptions="FillAndExpand" Padding="0"   Opis="Pn" IsChecked="{Binding Helper.Strefa1.PnChcecked}"/>
+                                        <kontrolki:ButtonEx Grid.Column="1"  Command="{Binding DniS1Command}" Param="1" HorizontalOptions="FillAndExpand" Padding="0"   Opis="Wt" IsChecked="{Binding Helper.Strefa1.WtChcecked}"/>
+                                        <kontrolki:ButtonEx Grid.Column="2"  Command="{Binding DniS1Command}" Param="2" HorizontalOptions="FillAndExpand" Padding="0"   Opis="Sr" IsChecked="{Binding Helper.Strefa1.SrChcecked}"/>
+                                        <kontrolki:ButtonEx Grid.Column="3"   Command="{Binding DniS1Command}" Param="3" HorizontalOptions="FillAndExpand" Padding="0"  Opis="Czw" IsChecked="{Binding Helper.Strefa1.CzwChcecked}"/>
+                                        <kontrolki:ButtonEx Grid.Column="4"  Command="{Binding DniS1Command}" Param="4"  HorizontalOptions="FillAndExpand" Padding="0"  Opis="Pt" IsChecked="{Binding Helper.Strefa1.PtChcecked}"/>
+                                        <kontrolki:ButtonEx Grid.Column="5"  Command="{Binding DniS1Command}" Param="5"  HorizontalOptions="FillAndExpand" Padding="0"  Opis="Sb" IsChecked="{Binding Helper.Strefa1.SbChcecked}"/>
+                                        <kontrolki:ButtonEx Grid.Column="6"  Command="{Binding DniS1Command}" Param="6" HorizontalOptions="FillAndExpand" Padding="0"  Opis="Nd" IsChecked="{Binding Helper.Strefa1.NdChcecked}"/>
+
+                                    </Grid>
+
+
+                                </StackLayout>
+
+
+                                <StackLayout Orientation="Vertical">
+                                    <Grid Margin="0,10,0,0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition/>
+                                        </Grid.ColumnDefinitions>
+
+
+                                            <Label Grid.Column="0" Style="{StaticResource LabelStyle}" Text="Czas rozpoczęcia:"  HorizontalOptions="Start" VerticalOptions="Center"/>
+                                            <TimePicker Grid.Column="1" Style="{StaticResource LabelStyle}" Format="HH:mm"  Time="{Binding Helper.Strefa1.Czas, Mode=TwoWay}" HorizontalOptions="End" VerticalOptions="Center"></TimePicker>
+                                    </Grid>
+
+                                        <Label Margin="0,-10,0,0"  Style="{StaticResource LabelStyleM}" Text="{Binding Helper.Strefa1.CzasDo}" HorizontalOptions="Start" VerticalOptions="Start"></Label>
+                                       
+                                        <Grid HeightRequest="1" BackgroundColor="#f5f5f5" Margin="0,10,0,0"/>
+                                    <Grid Margin="0,10,0,10">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="2*"/>
+                                            <ColumnDefinition Width="1*"/>
+                                        </Grid.ColumnDefinitions>
+
+
+                                            <Label Grid.Column="0" Style="{StaticResource LabelStyle}" Text="Długość podlewania" HorizontalOptions="Start" VerticalOptions="Center"/>
+                                        <StackLayout Grid.Column="1" Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="End">
+                                                <Label  Text="{Binding Helper.Strefa1.Dlugosc}" Style="{StaticResource LabelStyle}"   HorizontalOptions="End" VerticalOptions="Center"/>
+                                                <Label  Text=" min" Style="{StaticResource LabelStyle}"   HorizontalOptions="End" VerticalOptions="Center"/>
+                                        </StackLayout>
+                                    </Grid>
+                                    <Slider ThumbColor="#48a999" Value="{Binding Helper.Strefa1.Dlugosc}" MaximumTrackColor="#757575" MinimumTrackColor="#004c40" Minimum="0" Maximum="60" HorizontalOptions="FillAndExpand"></Slider>
+                                </StackLayout>
+                                <Grid Margin="0,30,0,20">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1*"/>
+                                        <ColumnDefinition Width="1*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Button Grid.Column="1" Margin="10, 0, 10, 0" CornerRadius="10" HeightRequest="50" TextColor="#ffffff" Text="Zapisz" BackgroundColor="#00796b" Command="{Binding ZapiszS1Command}"   VerticalOptions="End"/>
+
+                                </Grid>
+
+                            </StackLayout>
+
+                        </StackLayout>
+        
+                </Frame>
+                        </StackLayout>
+                    </ScrollView>
+                </StackLayout>
+        </Grid>
+            <Grid VerticalOptions="CenterAndExpand">
+     
+                <Label  Text="Pobieranie danych..." HorizontalOptions="Center" VerticalOptions="Center">
+                <Label.Triggers>
+                    <DataTrigger TargetType="Label" Binding="{Binding Ladowanie}" Value="True">
+                        <Setter Property="IsVisible" Value="False" />
+                    </DataTrigger>
+                </Label.Triggers>
+            </Label>
+            </Grid>
+        </StackLayout>
+        </ContentPage>
+
+
+    <ContentPage Title="Strefa2">
+        <StackLayout>
+            <Label  Text="Łączenie..."  HorizontalOptions="Center" HeightRequest="30">
+                <Label.Triggers>
+                    <DataTrigger TargetType="Label" Binding="{Binding Helper.Polaczony}" Value="True">
+                        <Setter Property="IsVisible" Value="False" />
+                    </DataTrigger>
+                </Label.Triggers>
+            </Label>
+            <Grid IsVisible="{Binding Ladowanie}">
+                <StackLayout Orientation="Vertical">
+                    <StackLayout Orientation="Horizontal">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="4*"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label  Grid.Column="0" Margin="5,5,0,10" HeightRequest="50" Text="{Binding Helper.Strefa2.Nazwa}" FontSize="Large" TextColor="Black"/>
+                            <Button Grid.Column="1"  Margin="10, 5, 10, 0" CornerRadius="10" HeightRequest="50" TextColor="#ffffff" Text="..." BackgroundColor="#00796b" Command="{Binding WybierzZdjCommand }"  CommandParameter="2"   VerticalOptions="End"/>
+                        </Grid>
+
+                    </StackLayout>
+                    <ScrollView Orientation="Vertical">
+                        <StackLayout Orientation="Vertical">
+                            <Image Source="{Binding ZdjS2}" Aspect="AspectFill" HeightRequest="150"/>
+                            <Frame Margin="20,5,20,10">
+
+                                <StackLayout>
+                                    <StackLayout Orientation="Horizontal">
+
+                                        <Grid HorizontalOptions="FillAndExpand" Margin="0,10,0,0">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="1*"  />
+                                                <ColumnDefinition Width="1*"/>
+                                                <ColumnDefinition Width="1*"/>
+                                                <ColumnDefinition Width="1*"/>
+                                                <ColumnDefinition Width="1*"/>
+                                                <ColumnDefinition Width="1*"/>
+                                                <ColumnDefinition Width="1*"/>
+                                            </Grid.ColumnDefinitions>
+
+
+                                            <kontrolki:ButtonEx Grid.Column="0" Command="{Binding DniS2Command}"  Param="0" HorizontalOptions="FillAndExpand" Padding="0"   Opis="Pn" IsChecked="{Binding Helper.Strefa2.PnChcecked}"/>
+                                            <kontrolki:ButtonEx Grid.Column="1"  Command="{Binding DniS2Command}" Param="1" HorizontalOptions="FillAndExpand" Padding="0"   Opis="Wt" IsChecked="{Binding Helper.Strefa2.WtChcecked}"/>
+                                            <kontrolki:ButtonEx Grid.Column="2"  Command="{Binding DniS2Command}" Param="2" HorizontalOptions="FillAndExpand" Padding="0"   Opis="Sr" IsChecked="{Binding Helper.Strefa2.SrChcecked}"/>
+                                            <kontrolki:ButtonEx Grid.Column="3"   Command="{Binding DniS2Command}" Param="3" HorizontalOptions="FillAndExpand" Padding="0"  Opis="Czw" IsChecked="{Binding Helper.Strefa2.CzwChcecked}"/>
+                                            <kontrolki:ButtonEx Grid.Column="4"  Command="{Binding DniS2Command}" Param="4"  HorizontalOptions="FillAndExpand" Padding="0"  Opis="Pt" IsChecked="{Binding Helper.Strefa2.PtChcecked}"/>
+                                            <kontrolki:ButtonEx Grid.Column="5"  Command="{Binding DniS2Command}" Param="5"  HorizontalOptions="FillAndExpand" Padding="0"  Opis="Sb" IsChecked="{Binding Helper.Strefa2.SbChcecked}"/>
+                                            <kontrolki:ButtonEx Grid.Column="6"  Command="{Binding DniS2Command}" Param="6" HorizontalOptions="FillAndExpand" Padding="0"  Opis="Nd" IsChecked="{Binding Helper.Strefa2.NdChcecked}"/>
+
+
+                                        </Grid>
+
+                                    </StackLayout>
+
+
+                                    <StackLayout Orientation="Vertical">
+                                        <Grid Margin="0,10,0,0">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="2*"/>
+                                                <ColumnDefinition Width="1*"/>
+                                            </Grid.ColumnDefinitions>
+
+
+                                            <Label Grid.Column="0" Text="Czas rozpoczęcia:"   Style="{StaticResource LabelStyle}" HorizontalOptions="Start" VerticalOptions="Center"/>
+                                            <TimePicker Grid.Column="1" Format="HH:mm"   Style="{StaticResource LabelStyle}" Time="{Binding Helper.Strefa2.Czas}" HorizontalOptions="End" VerticalOptions="Center"></TimePicker>
+                                        </Grid>
+                                        <Label Margin="0,-10,0,0"  Style="{StaticResource LabelStyleM}" Text="{Binding Helper.Strefa2.CzasDo}" HorizontalOptions="Start" VerticalOptions="Start"></Label>
+
+                                        <Grid HeightRequest="1" BackgroundColor="#f5f5f5" Margin="0,10,0,0"/>
+                                        <Grid Margin="0,10,0,10">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="2*"/>
+                                                <ColumnDefinition Width="1*"/>
+                                            </Grid.ColumnDefinitions>
+
+
+                                            <Label Grid.Column="0" Text="Długość podlewania" Style="{StaticResource LabelStyle}" HorizontalOptions="Start" VerticalOptions="Center"/>
+                                            <StackLayout Grid.Column="1" Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="End">
+                                                <Label  Text="{Binding Helper.Strefa2.Dlugosc}"   Style="{StaticResource LabelStyle}" HorizontalOptions="End" VerticalOptions="Center"/>
+                                                <Label  Text=" min"  Style="{StaticResource LabelStyle}" HorizontalOptions="End" VerticalOptions="Center"/>
+                                            </StackLayout>
+                                        </Grid>
+
+                                        <Slider ThumbColor="#48a999"  Value="{Binding Helper.Strefa2.Dlugosc}" MaximumTrackColor="#757575" MinimumTrackColor="#004c40" Minimum="0" Maximum="60" HorizontalOptions="FillAndExpand"></Slider>
+                                    </StackLayout>
+                                    <Grid Margin="0,30,0,20">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="1*"/>
+                                            <ColumnDefinition Width="1*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Button Grid.Column="1"  Margin="10, 0, 10, 0" CornerRadius="10" HeightRequest="50" TextColor="#ffffff" Text="Zapisz" BackgroundColor="#00796b" Command="{Binding ZapiszS2Command}"   VerticalOptions="End"/>
+
+                                    </Grid>
+
+                                </StackLayout>
+
+                            </Frame>
+                        </StackLayout>
+                    </ScrollView>
+                </StackLayout>
+     
+        </Grid>
+        <Grid VerticalOptions="CenterAndExpand">
+            <Label Text="Pobieranie danych..." HorizontalOptions="Center" VerticalOptions="Center">
+                <Label.Triggers>
+                    <DataTrigger TargetType="Label" Binding="{Binding Ladowanie}" Value="True">
+                        <Setter Property="IsVisible" Value="False" />
+                    </DataTrigger>
+                </Label.Triggers>
+            </Label>
+        </Grid>
+        </StackLayout>
+    </ContentPage>
+
+
+    <ContentPage Title="Strefa3">
+        <StackLayout>
+            <Label  Text="Łączenie..."  HorizontalOptions="Center" HeightRequest="30">
+                <Label.Triggers>
+                    <DataTrigger TargetType="Label" Binding="{Binding Helper.Polaczony}" Value="True">
+                        <Setter Property="IsVisible" Value="False" />
+                    </DataTrigger>
+                </Label.Triggers>
+            </Label>
+            <Grid IsVisible="{Binding Ladowanie}">
+                <StackLayout Orientation="Vertical">
+                    <StackLayout Orientation="Horizontal">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="4*"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label  Grid.Column="0" Margin="5,5,0,10" HeightRequest="50" Text="{Binding Helper.Strefa3.Nazwa}" FontSize="Large" TextColor="Black"/>
+                            <Button Grid.Column="1"  Margin="10, 5, 10, 0" CornerRadius="10" HeightRequest="50" TextColor="#ffffff" Text="..." BackgroundColor="#00796b" Command="{Binding WybierzZdjCommand }"  CommandParameter="3"   VerticalOptions="End"/>
+                        </Grid>
+
+                    </StackLayout>
+                    <ScrollView Orientation="Vertical">
+                        <StackLayout Orientation="Vertical">
+                            <Image Source="{Binding ZdjS3}" Aspect="AspectFill" HeightRequest="150"/>
+                            <Frame Margin="20,5,20,10">
+
+                                <StackLayout>
+                                    <StackLayout Orientation="Horizontal">
+
+                                        <Grid HorizontalOptions="FillAndExpand" Margin="0,10,0,0">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="1*"  />
+                                                <ColumnDefinition Width="1*"/>
+                                                <ColumnDefinition Width="1*"/>
+                                                <ColumnDefinition Width="1*"/>
+                                                <ColumnDefinition Width="1*"/>
+                                                <ColumnDefinition Width="1*"/>
+                                                <ColumnDefinition Width="1*"/>
+                                            </Grid.ColumnDefinitions>
+
+
+                                            <kontrolki:ButtonEx Grid.Column="0" Command="{Binding DniS3Command}"  Param="0" HorizontalOptions="FillAndExpand" Padding="0"   Opis="Pn" IsChecked="{Binding Helper.Strefa3.PnChcecked}"/>
+                                            <kontrolki:ButtonEx Grid.Column="1"  Command="{Binding DniS3Command}" Param="1" HorizontalOptions="FillAndExpand" Padding="0"   Opis="Wt" IsChecked="{Binding Helper.Strefa3.WtChcecked}"/>
+                                            <kontrolki:ButtonEx Grid.Column="2"  Command="{Binding DniS3Command}" Param="2" HorizontalOptions="FillAndExpand" Padding="0"   Opis="Sr" IsChecked="{Binding Helper.Strefa3.SrChcecked}"/>
+                                            <kontrolki:ButtonEx Grid.Column="3"   Command="{Binding DniS3Command}" Param="3" HorizontalOptions="FillAndExpand" Padding="0"  Opis="Czw" IsChecked="{Binding Helper.Strefa3.CzwChcecked}"/>
+                                            <kontrolki:ButtonEx Grid.Column="4"  Command="{Binding DniS3Command}" Param="4"  HorizontalOptions="FillAndExpand" Padding="0"  Opis="Pt" IsChecked="{Binding Helper.Strefa3.PtChcecked}"/>
+                                            <kontrolki:ButtonEx Grid.Column="5"  Command="{Binding DniS3Command}" Param="5"  HorizontalOptions="FillAndExpand" Padding="0"  Opis="Sb" IsChecked="{Binding Helper.Strefa3.SbChcecked}"/>
+                                            <kontrolki:ButtonEx Grid.Column="6"  Command="{Binding DniS3Command}" Param="6" HorizontalOptions="FillAndExpand" Padding="0"  Opis="Nd" IsChecked="{Binding Helper.Strefa3.NdChcecked}"/>
+
+
+                                        </Grid>
+
+                                    </StackLayout>
+
+
+                                    <StackLayout Orientation="Vertical">
+                                        <Grid Margin="0,10,0,0">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition/>
+                                                <ColumnDefinition/>
+                                            </Grid.ColumnDefinitions>
+
+
+                                            <Label Grid.Column="0" Text="Czas rozpoczęcia:" Style="{StaticResource LabelStyle}" HorizontalOptions="Start" VerticalOptions="Center"/>
+                                            <TimePicker Grid.Column="1" Format="HH:mm"  Style="{StaticResource LabelStyle}" Time="{Binding Helper.Strefa3.Czas}" HorizontalOptions="End" VerticalOptions="Center"></TimePicker>
+                                        </Grid>
+                                        <Label Margin="0,-10,0,0"  Style="{StaticResource LabelStyleM}" Text="{Binding Helper.Strefa3.CzasDo}" HorizontalOptions="Start" VerticalOptions="Start"></Label>
+
+                                        <Grid HeightRequest="1" BackgroundColor="#f5f5f5" Margin="0,10,0,0"/>
+                                        <Grid Margin="0,10,0,10">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="2*"/>
+                                                <ColumnDefinition Width="1*"/>
+                                            </Grid.ColumnDefinitions>
+
+
+                                            <Label Grid.Column="0" Text="Długość podlewania" Style="{StaticResource LabelStyle}" HorizontalOptions="Start" VerticalOptions="Center"/>
+                                            <StackLayout Grid.Column="1" Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="End">
+                                                <Label  Text="{Binding Helper.Strefa3.Dlugosc}" Style="{StaticResource LabelStyle}" HorizontalOptions="End" VerticalOptions="Center"/>
+                                                <Label  Text=" min"  Style="{StaticResource LabelStyle}" HorizontalOptions="End" VerticalOptions="Center"/>
+                                            </StackLayout>
+                                        </Grid>
+                                        <Slider ThumbColor="#48a999" Value="{Binding Helper.Strefa3.Dlugosc}" MaximumTrackColor="#757575" MinimumTrackColor="#004c40" Minimum="0" Maximum="60" HorizontalOptions="FillAndExpand"></Slider>
+                                    </StackLayout>
+                                    <Grid Margin="0,30,0,20">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="1*"/>
+                                            <ColumnDefinition Width="1*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Button Grid.Column="1"  Margin="10, 0, 10, 0" CornerRadius="10" HeightRequest="50" TextColor="#ffffff" Text="Zapisz" BackgroundColor="#00796b" Command="{Binding ZapiszS3Command}"   VerticalOptions="End"/>
+
+                                    </Grid>
+
+                                </StackLayout>
+
+                            </Frame>
+                        </StackLayout>
+                    </ScrollView>
+                </StackLayout>
+        </Grid>
+        <Grid VerticalOptions="CenterAndExpand">
+            <Label Text="Pobieranie danych..." HorizontalOptions="Center" VerticalOptions="Center">
+                <Label.Triggers>
+                    <DataTrigger TargetType="Label" Binding="{Binding Ladowanie}" Value="True">
+                        <Setter Property="IsVisible" Value="False" />
+                    </DataTrigger>
+                </Label.Triggers>
+            </Label>
+        </Grid>
+        </StackLayout>
+    </ContentPage>
+
+<!--
+    <ContentPage Title="Strefa4">
+        <StackLayout>
+            <Grid IsVisible="{Binding Ladowanie}">
+                <StackLayout Orientation="Vertical">
+                <StackLayout Orientation="Horizontal">
+                    <Image Source="strefa.png" Margin="20,20,0,0" />
+                    <Label  Margin="5,20,0,0" Text="Strefa 4" FontSize="Large" TextColor="Black"/>
+                </StackLayout>
+                <Frame Margin="20,5,20,10">
+                    <ScrollView Orientation="Vertical">
+                        <StackLayout>
+
+                            <Image Source="Strefa1.jpg" />
+
+                            <StackLayout Orientation="Horizontal">
+
+                                <Grid HorizontalOptions="FillAndExpand" Margin="0,10,0,0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1*"  />
+                                        <ColumnDefinition Width="1*"/>
+                                        <ColumnDefinition Width="1*"/>
+                                        <ColumnDefinition Width="1*"/>
+                                        <ColumnDefinition Width="1*"/>
+                                        <ColumnDefinition Width="1*"/>
+                                        <ColumnDefinition Width="1*"/>
+                                    </Grid.ColumnDefinitions>
+
+
+                                    <kontrolki:ButtonEx Grid.Column="0" Command="{Binding DniS4Command}"  Param="0" HorizontalOptions="FillAndExpand" Padding="0"   Opis="Pn" IsChecked="{Binding Helper.Strefa4.PnChcecked}"/>
+                                    <kontrolki:ButtonEx Grid.Column="1"  Command="{Binding DniS4Command}" Param="1" HorizontalOptions="FillAndExpand" Padding="0"   Opis="Wt" IsChecked="{Binding Helper.Strefa4.WtChcecked}"/>
+                                    <kontrolki:ButtonEx Grid.Column="2"  Command="{Binding DniS4Command}" Param="2" HorizontalOptions="FillAndExpand" Padding="0"   Opis="Sr" IsChecked="{Binding Helper.Strefa4.SrChcecked}"/>
+                                    <kontrolki:ButtonEx Grid.Column="3"   Command="{Binding DniS4Command}" Param="3" HorizontalOptions="FillAndExpand" Padding="0"  Opis="Czw" IsChecked="{Binding Helper.Strefa4.CzwChcecked}"/>
+                                    <kontrolki:ButtonEx Grid.Column="4"  Command="{Binding DniS4Command}" Param="4"  HorizontalOptions="FillAndExpand" Padding="0"  Opis="Pt" IsChecked="{Binding Helper.Strefa4.PtChcecked}"/>
+                                    <kontrolki:ButtonEx Grid.Column="5"  Command="{Binding DniS4Command}" Param="5"  HorizontalOptions="FillAndExpand" Padding="0"  Opis="Sb" IsChecked="{Binding Helper.Strefa4.SbChcecked}"/>
+                                    <kontrolki:ButtonEx Grid.Column="6"  Command="{Binding DniS4Command}" Param="6" HorizontalOptions="FillAndExpand" Padding="0"  Opis="Nd" IsChecked="{Binding Helper.Strefa4.NdChcecked}"/>
+
+
+                                </Grid>
+
+                            </StackLayout>
+
+
+                            <StackLayout Orientation="Vertical">
+                                <Grid Margin="0,10,0,0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+
+
+                                    <Label Grid.Column="0" Text="Czas rozpoczęcia:"  FontSize="Medium" HorizontalOptions="Start" VerticalOptions="Center"/>
+                                    <TimePicker Grid.Column="1" Format="HH:mm"  Time="{Binding Helper.Strefa4.Czas}" HorizontalOptions="End" VerticalOptions="Center"></TimePicker>
+                                </Grid>
+                                <Grid HeightRequest="1" BackgroundColor="#f5f5f5" Margin="0,10,0,0"/>
+                                <Grid Margin="0,10,0,10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+
+
+                                    <Label Grid.Column="0" Text="Długość podlewania"  FontSize="Medium" HorizontalOptions="Start" VerticalOptions="Center"/>
+                                    <StackLayout Grid.Column="1" Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="End">
+                                        <Label  Text="{Binding Helper.Strefa4.Dlugosc}"  FontSize="Medium" HorizontalOptions="End" VerticalOptions="Center"/>
+                                        <Label  Text=" min"  FontSize="Medium" HorizontalOptions="End" VerticalOptions="Center"/>
+                                    </StackLayout>
+                                </Grid>
+                                <Slider ThumbColor="#48a999" Value="{Binding Helper.Strefa4.Dlugosc}" MaximumTrackColor="#757575" MinimumTrackColor="#004c40" Minimum="0" Maximum="60" HorizontalOptions="FillAndExpand"></Slider>
+                            </StackLayout>
+                            <Grid Margin="0,30,0,20">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                </Grid.ColumnDefinitions>
+                                <Button Grid.Column="1" Margin="10, 0, 10, 0" CornerRadius="10" HeightRequest="50" TextColor="#ffffff" Text="Zapisz" BackgroundColor="#00796b" Command="{Binding ZapiszS4Command}"   VerticalOptions="End"/>
+
+                            </Grid>
+
+                        </StackLayout>
+                    </ScrollView>
+                </Frame>
+
+            </StackLayout>
+        </Grid>
+        <Grid VerticalOptions="CenterAndExpand">
+            <Label Text="Pobieranie danych..." HorizontalOptions="Center" VerticalOptions="Center">
+                <Label.Triggers>
+                    <DataTrigger TargetType="Label" Binding="{Binding Ladowanie}" Value="True">
+                        <Setter Property="IsVisible" Value="False" />
+                    </DataTrigger>
+                </Label.Triggers>
+            </Label>
+        </Grid>
+        </StackLayout>
+    </ContentPage>
+
+
+    <ContentPage Title="Strefa5"  IsEnabled="False">
+        <StackLayout Orientation="Vertical">
+            <Grid IsVisible="{Binding Ladowanie}">
+                <StackLayout Orientation="Vertical">
+                <StackLayout Orientation="Horizontal">
+                    <Image Source="strefa.png" Margin="20,20,0,0" />
+                    <Label  Margin="5,20,0,0" Text="Strefa 5" FontSize="Large" TextColor="Black"/>
+                </StackLayout>
+                <Frame Margin="20,5,20,10">
+                    <ScrollView Orientation="Vertical">
+                        <StackLayout>
+
+                            <Image Source="Strefa1.jpg" />
+
+                            <StackLayout Orientation="Horizontal">
+
+                                <Grid HorizontalOptions="FillAndExpand" Margin="0,10,0,0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1*"  />
+                                        <ColumnDefinition Width="1*"/>
+                                        <ColumnDefinition Width="1*"/>
+                                        <ColumnDefinition Width="1*"/>
+                                        <ColumnDefinition Width="1*"/>
+                                        <ColumnDefinition Width="1*"/>
+                                        <ColumnDefinition Width="1*"/>
+                                    </Grid.ColumnDefinitions>
+
+
+                                    <kontrolki:ButtonEx Grid.Column="0" Command="{Binding DniS5Command}"  Param="0" HorizontalOptions="FillAndExpand" Padding="0"   Opis="Pn" IsChecked="{Binding Helper.Strefa5.PnChcecked}"/>
+                                    <kontrolki:ButtonEx Grid.Column="1"  Command="{Binding DniS5Command}" Param="1" HorizontalOptions="FillAndExpand" Padding="0"   Opis="Wt" IsChecked="{Binding Helper.Strefa5.WtChcecked}"/>
+                                    <kontrolki:ButtonEx Grid.Column="2"  Command="{Binding DniS5Command}" Param="2" HorizontalOptions="FillAndExpand" Padding="0"   Opis="Sr" IsChecked="{Binding Helper.Strefa5.SrChcecked}"/>
+                                    <kontrolki:ButtonEx Grid.Column="3"   Command="{Binding DniS5Command}" Param="3" HorizontalOptions="FillAndExpand" Padding="0"  Opis="Czw" IsChecked="{Binding Helper.Strefa5.CzwChcecked}"/>
+                                    <kontrolki:ButtonEx Grid.Column="4"  Command="{Binding DniS5Command}" Param="4"  HorizontalOptions="FillAndExpand" Padding="0"  Opis="Pt" IsChecked="{Binding Helper.Strefa5.PtChcecked}"/>
+                                    <kontrolki:ButtonEx Grid.Column="5"  Command="{Binding DniS5Command}" Param="5"  HorizontalOptions="FillAndExpand" Padding="0"  Opis="Sb" IsChecked="{Binding Helper.Strefa5.SbChcecked}"/>
+                                    <kontrolki:ButtonEx Grid.Column="6"  Command="{Binding DniS5Command}" Param="6" HorizontalOptions="FillAndExpand" Padding="0"  Opis="Nd" IsChecked="{Binding Helper.Strefa5.NdChcecked}"/>
+
+
+                                </Grid>
+
+                            </StackLayout>
+
+
+                            <StackLayout Orientation="Vertical">
+                                <Grid Margin="0,10,0,0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+
+
+                                    <Label Grid.Column="0" Text="Czas rozpoczęcia:"  FontSize="Medium" HorizontalOptions="Start" VerticalOptions="Center"/>
+                                    <TimePicker Grid.Column="1" Format="HH:mm"  Time="{Binding Helper.Strefa5.Czas}" HorizontalOptions="End" VerticalOptions="Center"></TimePicker>
+                                </Grid>
+                                <Grid HeightRequest="1" BackgroundColor="#f5f5f5" Margin="0,10,0,0"/>
+                                <Grid Margin="0,10,0,10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+
+
+                                    <Label Grid.Column="0" Text="Długość podlewania"  FontSize="Medium" HorizontalOptions="Start" VerticalOptions="Center"/>
+                                    <StackLayout Grid.Column="1" Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="End">
+                                        <Label  Text="{Binding Helper.Strefa5.Dlugosc}"  FontSize="Medium" HorizontalOptions="End" VerticalOptions="Center"/>
+                                        <Label  Text=" min"  FontSize="Medium" HorizontalOptions="End" VerticalOptions="Center"/>
+                                    </StackLayout>
+                                </Grid>
+                                <Slider ThumbColor="#48a999" Value="{Binding Helper.Strefa5.Dlugosc}}" MaximumTrackColor="#757575" MinimumTrackColor="#004c40" Minimum="0" Maximum="60" HorizontalOptions="FillAndExpand"></Slider>
+                            </StackLayout>
+                            <Grid Margin="0,30,0,20">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                </Grid.ColumnDefinitions>
+                                <Button Grid.Column="1" Margin="10, 0, 10, 0" CornerRadius="10" HeightRequest="50" TextColor="#ffffff" Text="Zapisz" BackgroundColor="#00796b" Command="{Binding ZapiszS5Command}"   VerticalOptions="End"/>
+
+                            </Grid>
+
+                        </StackLayout>
+                    </ScrollView>
+                </Frame>
+
+            </StackLayout>
+
+
+        </Grid>
+        <Grid VerticalOptions="CenterAndExpand">
+            <Label Text="Pobieranie danych..." HorizontalOptions="Center" VerticalOptions="Center">
+                <Label.Triggers>
+                    <DataTrigger TargetType="Label" Binding="{Binding Ladowanie}" Value="True">
+                        <Setter Property="IsVisible" Value="False" />
+                    </DataTrigger>
+                </Label.Triggers>
+            </Label>
+        </Grid>
+        </StackLayout>
+    </ContentPage>
+-->
+        
+    
+
+</TabbedPage>

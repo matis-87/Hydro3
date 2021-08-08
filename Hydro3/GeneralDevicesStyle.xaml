@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Hydro3.GeneralDevicesStyle">
+
+
+    <Style TargetType="Button" x:Key="MainButtonStyle">
+        <Setter Property="FontSize" Value="13"/>
+        <Setter Property="BackgroundColor" Value="#00796b"/>
+        <Setter Property="CornerRadius" Value="10"/>
+        <Setter Property="HeightRequest" Value="50"/>
+        <Setter Property="TextColor" Value="#ffffff" />
+        <Style.Triggers>
+            <DataTrigger TargetType="Button" Binding="{Binding Helper.Polaczony}" Value="false">
+                <Setter Property="Text" Value="Połącz" />
+            </DataTrigger>
+            <DataTrigger TargetType="Button" Binding="{Binding Helper.Polaczony}" Value="true">
+                <Setter Property="Text" Value="Rozłącz" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style TargetType="Button" x:Key="IconStyle">
+        <Setter Property="HeightRequest" Value="40"/>
+        <Setter Property="WidthRequest" Value="40"/>
+    </Style>
+
+    <Style TargetType="Label" x:Key="LabelStyleM">
+        <Setter Property="FontSize" Value="Small"/>
+    </Style>
+
+    <Style TargetType="Label" x:Key="LabelStyle">
+        <Setter Property="FontSize" Value="Medium"/>
+    </Style>
+
+
+    <Style TargetType="Label" x:Key="LabelStyleL">
+        <Setter Property="FontSize" Value="Large"/>
+    </Style>
+
+    <Style x:Key="LPolaczenia" TargetType="Label">
+        <Setter Property="FontSize" Value="Medium"/>
+        <Style.Triggers>
+            <DataTrigger TargetType="Label" Binding="{Binding Helper.Polaczony}" Value="false">
+                <Setter Property="TextColor" Value="Red"/>
+                <Setter Property="Text" Value="Offline" />
+            </DataTrigger>
+
+
+            <DataTrigger TargetType="Label" Binding="{Binding Helper.Polaczony}" Value="true">
+                <Setter Property="TextColor" Value="Green"/>
+                <Setter Property="Text" Value="Online" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+
+</ResourceDictionary>

@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Grid xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:k="clr-namespace:Hydro3.Kontrolki"
+             mc:Ignorable="d"
+             x:Class="Hydro3.Kontrolki.KontrolkaEx"
+             x:Name="This">
+    <Grid.RowDefinitions>
+        <RowDefinition Height="30"/>
+    </Grid.RowDefinitions>
+    <Grid.ColumnDefinitions>
+        <ColumnDefinition  Width="20" />
+        <ColumnDefinition/>
+    </Grid.ColumnDefinitions>
+    <k:Kontrolka1 Grid.Column="0" Stan="{Binding Stan, Source={x:Reference This}}" Kolor="{Binding Kolor, Source={x:Reference This}}" Grid.Row="0"></k:Kontrolka1>
+    <Label Grid.Row="0" Grid.Column="1"  Text="{Binding Opis, Source={x:Reference This}}" TextColor="#000"  VerticalOptions="Center" Margin="10,0,0,0"/>
+
+</Grid>
+    

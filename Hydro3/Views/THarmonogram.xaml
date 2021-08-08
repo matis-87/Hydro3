@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:prism="http://prismlibrary.com"
+            prism:ViewModelLocator.AutowireViewModel="True"
+            x:Class="Hydro3.Views.THarmonogram"
+            xmlns:pages="clr-namespace:Hydro3.Views" 
+        
+            >
+    <pages:Harmonogram/>
+    <ContentPage Title="Strefa2">
+        <StackLayout>
+            <Label Text="Green"  HorizontalTextAlignment="Center" HorizontalOptions="FillAndExpand" Margin="5" />
+            <BoxView Color="Green" VerticalOptions="FillAndExpand" />
+        </StackLayout>
+    </ContentPage>
+    <ContentPage Title="Strefa3">
+        <StackLayout>
+            <Label Text="Blue" HorizontalTextAlignment="Center" HorizontalOptions="FillAndExpand" Margin="5"  />
+            <BoxView Color="Blue" VerticalOptions="FillAndExpand" />
+        </StackLayout>
+    </ContentPage>
+    <ContentPage Title="Strefa4">
+        
+        <StackLayout>
+            <Label Text="Blue" HorizontalTextAlignment="Center" HorizontalOptions="FillAndExpand" Margin="5"  />
+            <BoxView Color="Blue" VerticalOptions="FillAndExpand" />
+        </StackLayout>
+    </ContentPage>
+    <ContentPage Title="Strefa5">
+        <StackLayout>
+            <Label Text="Blue" HorizontalTextAlignment="Center" HorizontalOptions="FillAndExpand" Margin="5"  />
+            <BoxView Color="Blue" VerticalOptions="FillAndExpand" />
+        </StackLayout>
+    </ContentPage>
+</TabbedPage>

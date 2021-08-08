@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<prism:PrismApplication xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.DryIoc;assembly=Prism.DryIoc.Forms"
+             x:Class="Hydro3.App"
+             xmlns:kon="clr-namespace:Hydro3.Kontrolki">
+	<Application.Resources>
+
+		<!-- Application resource dictionary -->
+
+        <Style x:Key="okienko" TargetType="BoxView">
+            <Setter  Property="CornerRadius" Value="1" />
+            
+
+
+        </Style>
+
+
+
+        <Style x:Key="BSPolaczenia" TargetType="Button">
+            <Style.Triggers>
+                <DataTrigger TargetType="Button" Binding="{Binding Helper.Polaczony}" Value="false">
+                    <Setter Property="Text" Value="Połącz" />
+                </DataTrigger>
+                <DataTrigger TargetType="Button" Binding="{Binding Helper.Polaczony}" Value="true">
+                    <Setter Property="Text" Value="Rozłącz" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        
+
+        <Style x:Key="LampG" TargetType="kon:Kontrolka1">
+             <Style.Triggers>
+
+
+                <Trigger TargetType="kon:Kontrolka1"  Property="IsEnabled" Value="False">
+                    <Setter Property="BackgroundColor" Value="Yellow"/>
+                </Trigger>
+   
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="Taby" TargetType="TabbedPage">
+            <Setter Property="BarBackgroundColor" Value="#48a999"/>
+            <Setter Property="BarTextColor" Value="#000000"/>
+            
+        </Style>
+
+        <ResourceDictionary x:Name="dictionary">
+        
+        </ResourceDictionary>
+    </Application.Resources>
+</prism:PrismApplication>

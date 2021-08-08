@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="Hydro3.Views.WyborZdj">
+    <StackLayout Orientation="Vertical">
+
+            <Label  Margin="5,5,0,0" Text="{Binding NrStrefy}" FontSize="Large" TextColor="Black"/>
+        <Grid Margin="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Column="0" Margin="10,0,0,0" Style="{StaticResource LabelStyle}"  VerticalOptions="Center" Text="Nazwa strefy:"  TextColor="Black"/>
+            <Entry Grid.Column="1" Margin="0,0,0,10" Style="{StaticResource LabelStyle}" Text="{Binding NazwaStrefy}" VerticalOptions="Center" HorizontalOptions="FillAndExpand"></Entry>
+        </Grid>
+        <Grid Margin="10">
+            <Image Source="{Binding Zdj}" Aspect="AspectFill" HeightRequest="150"/>
+            <Button  WidthRequest="30" VerticalOptions="Start" HorizontalOptions="End"  Margin="10, 0, 10, 0" CornerRadius="10" HeightRequest="50" TextColor="#ffffff" Text="Zmień" BackgroundColor="#00796b" Command="{Binding WyborCommand}"/>
+        </Grid>
+
+        <Button Margin="10, 0, 10, 0" CornerRadius="10" HeightRequest="50" TextColor="#ffffff" Text="Zapisz" BackgroundColor="#00796b" Command="{Binding ZapiszCommand}"   VerticalOptions="End"/>
+ 
+    </StackLayout>
+</ContentPage>

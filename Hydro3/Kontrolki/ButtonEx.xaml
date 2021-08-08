@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Frame xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="Hydro3.Kontrolki.ButtonEx"
+            xmlns:kon="clr-namespace:Hydro3.Kontrolki"
+       x:Name="This" 
+       HasShadow="False">
+
+    <Frame.GestureRecognizers>
+        <TapGestureRecognizer Command="{Binding Command, Source={x:Reference This}}" CommandParameter="{Binding Param, Source={x:Reference This}}"/>
+    </Frame.GestureRecognizers>
+
+    <Label Text="{Binding Opis, Source={x:Reference This}}"   IsEnabled="{Binding IsChecked, Source={x:Reference This}}">
+        <Label.Style>
+            <Style TargetType="Label">
+                <Setter Property="TextColor" Value="#757575"/>
+                <Style.Triggers>
+                    <Trigger TargetType="Label" Property="IsEnabled" Value="True">
+                        <Setter Property="TextColor" Value="Green"/>
+                        <Setter Property="FontAttributes" Value="Bold"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+        </Label.Style>
+    </Label>
+    
+</Frame>
